@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lazy Load Full Test App</title>
+
+  <script>
+    let timeLeft = 50;
+
+    function startLoading() {
+      const status = document.getElementById("status");
+
+      const timer = setInterval(() => {
+        status.innerText = "Loading content... (" + timeLeft + " seconds)";
+        timeLeft--;
+
+        if (timeLeft < 0) {
+          clearInterval(timer);
+
+          // Show content after countdown
+          document.getElementById("lazySection").style.display = "block";
+          status.innerText = "Content Loaded!";
+        }
+      }, 1000);
+    }
+
+    // Handle dropdown selection
+    function handleCountryChange() {
+      const value = document.getElementById("countryDropdown").value;
+      document.getElementById("selectedCountry").innerText =
+        "Selected: " + value;
+    }
+
+    window.onload = startLoading;
+  </script>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    #status {
+      font-size: 18px;
+      color: orange;
+      margin-bottom: 20px;
+    }
+
+    #lazySection {
+      display: none;
+      margin-top: 30px;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 10px auto;
+      width: 320px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    img {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    select {
+      padding: 8px;
+      margin-top: 10px;
+      width: 80%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Lazy Load Test (50 Seconds)</h1>
+  <p id="status">Starting...</p>
+
+  <!-- Lazy Loaded Section -->
+  <div id="lazySection">
+
+    <div class="card">
+      <h3>Item 1</h3>
+      <img src="https://picsum.photos/300/200?random=1">
+      <p>Some text in my newly loaded page...</p>
+    </div>
+
+    <div class="card">
+      <h3>Item 2</h3>
+      <img src="https://picsum.photos/300/200?random=2">
+      <p>Additional content loaded after delay.</p>
+    </div>
+
+    <div class="card">
+      <h3>Item 3</h3>
+      <img src="https://picsum.photos/300/200?random=3">
+      <p>More dynamic content for testing.</p>
+    </div>
+
+    <!-- Dropdown Section -->
+    <div class="card">
+      <h3>Select Country</h3>
+
+      <select id="countryDropdown" onchange="handleCountryChange()">
+        <option value="">-- Select Country --</option>
+        <option value="india">India</option>
+        <option value="usa">USA</option>
+        <option value="uk">United Kingdom</option>
+        <option value="australia">Australia</option>
+      </select>
+
+      <p id="selectedCountry"></p>
+    </div>
+
+  </div>
+
+</body>
+</html>

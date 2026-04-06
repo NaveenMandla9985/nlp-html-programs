@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Frames and Nested Frames Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+    .left-frame, .right-frame {
+      width: 50%;
+      padding: 10px;
+      border: 2px solid #333;
+      overflow: auto;
+    }
+    iframe {
+      width: 100%;
+      height: 45%;
+      border: 2px solid blue;
+      margin-top: 10px;
+    }
+    input {
+      display: block;
+      margin: 8px 0;
+      padding: 5px;
+      width: 80%;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Main Page (Parent Frame)</h2>
+
+<div class="container">
+
+  <!-- LEFT FRAME -->
+  <div class="left-frame">
+    <h3>Left Frame (Parent)</h3>
+
+    <label>First Name:</label>
+    <input type="text" id="parent_fname">
+
+    <label>Email:</label>
+    <input type="email" id="parent_email">
+
+    <label>Phone:</label>
+    <input type="text" id="parent_phone">
+
+    <!-- Nested Frame -->
+    <iframe srcdoc='
+      <html>
+      <body style="font-family: Arial;">
+        <h4>Nested Frame Level 1</h4>
+
+        <label>First Name:</label>
+        <input type="text" id="child1_fname">
+
+        <label>Email:</label>
+        <input type="email" id="child1_email">
+
+        <label>Phone:</label>
+        <input type="text" id="child1_phone">
+
+        <!-- Inner Nested Frame -->
+        <iframe srcdoc="
+          <html>
+          <body style=&quot;font-family: Arial;&quot;>
+            <h5>Nested Frame Level 2</h5>
+
+            <label>First Name:</label>
+            <input type=&quot;text&quot; id=&quot;child2_fname&quot;>
+
+            <label>Email:</label>
+            <input type=&quot;email&quot; id=&quot;child2_email&quot;>
+
+            <label>Phone:</label>
+            <input type=&quot;text&quot; id=&quot;child2_phone&quot;>
+          </body>
+          </html>
+        " width="100%" height="200"></iframe>
+
+      </body>
+      </html>
+    '></iframe>
+
+  </div>
+
+  <!-- RIGHT FRAME -->
+  <div class="right-frame">
+    <h3>Right Frame (Parent)</h3>
+
+    <label>First Name:</label>
+    <input type="text" id="right_fname">
+
+    <label>Email:</label>
+    <input type="email" id="right_email">
+
+    <label>Phone:</label>
+    <input type="text" id="right_phone">
+
+    <!-- Nested Frame -->
+    <iframe srcdoc='
+      <html>
+      <body style="font-family: Arial;">
+        <h4>Right Nested Frame</h4>
+
+        <label>First Name:</label>
+        <input type="text" id="right_child_fname">
+
+        <label>Email:</label>
+        <input type="email" id="right_child_email">
+
+        <label>Phone:</label>
+        <input type="text" id="right_child_phone">
+      </body>
+      </html>
+    '></iframe>
+
+  </div>
+
+</div>
+
+</body>
+</html>

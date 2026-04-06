@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Naveen Clean UI Page</title>
+
+<style>
+  body {
+    font-family: Arial;
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    transition: all 0.8s ease;
+    color: #222;
+  }
+
+  .selected-theme {
+    background: #2c3e50;
+    color: #ecf0f1;
+  }
+
+  h2 {
+    background: rgba(255,255,255,0.95);
+    padding: 10px;
+  }
+
+  #timer {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  #status {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  .radio-container {
+    width: 320px;
+    margin: 20px auto;
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .selected-theme .radio-container {
+    background: rgba(0,0,0,0.3);
+  }
+
+  .radio-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  #radioMessage {
+    font-size: 16px;
+    font-weight: bold;
+    color: #d35400;
+    margin-bottom: 10px;
+  }
+
+  .radio-item {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+
+  .selected-theme .radio-item {
+    color: #ecf0f1;
+  }
+
+  input[type="radio"]:checked + span {
+    font-weight: bold;
+    color: #f1c40f;
+  }
+</style>
+</head>
+
+<body>
+
+<h2>Naveen Automation Demo</h2>
+
+<div id="timer">Time Left: 40s</div>
+<div id="status">5th radio button will be selected</div>
+
+<div class="radio-container">
+
+  <div class="radio-header">Radio buttons selection defaultly</div>
+
+  <div id="radioMessage"></div>
+
+  <div class="radio-item"><input type="radio" id="r1" name="r"> <span>Naveen radio Button 1</span></div>
+  <div class="radio-item"><input type="radio" id="r2" name="r"> <span>Naveen radio Button 2</span></div>
+  <div class="radio-item"><input type="radio" id="r3" name="r"> <span>Naveen radio Button 3</span></div>
+  <div class="radio-item"><input type="radio" id="r4" name="r"> <span>Naveen radio Button 4</span></div>
+  <div class="radio-item"><input type="radio" id="r5" name="r"> <span>Naveen radio Button 5</span></div>
+  <div class="radio-item"><input type="radio" id="r6" name="r"> <span>Naveen radio Button 6</span></div>
+  <div class="radio-item"><input type="radio" id="r7" name="r"> <span>Naveen radio Button 7</span></div>
+  <div class="radio-item"><input type="radio" id="r8" name="r"> <span>Naveen radio Button 8</span></div>
+  <div class="radio-item"><input type="radio" id="r9" name="r"> <span>Naveen radio Button 9</span></div>
+  <div class="radio-item"><input type="radio" id="r10" name="r"> <span>Naveen radio Button 10</span></div>
+
+</div>
+
+<script>
+
+let phase = 1;
+let timeLeft = 40;
+let timer;
+
+function startTimer() {
+  timeLeft = 40;
+  updateTimer();
+
+  timer = setInterval(() => {
+    timeLeft--;
+    updateTimer();
+
+    if (timeLeft === 15) {
+      selectRadio();
+    }
+
+  }, 1000);
+}
+
+function updateTimer() {
+  document.getElementById("timer").innerText = "Time Left: " + timeLeft + "s";
+}
+
+function selectRadio() {
+
+  let targetRadio = (phase === 1)
+    ? document.getElementById("r5")
+    : document.getElementById("r7");
+
+  targetRadio.checked = true;
+  document.body.classList.add("selected-theme");
+
+  startDeselectionCountdown(targetRadio);
+}
+
+function startDeselectionCountdown(targetRadio) {
+
+  let countdown = 28;
+
+  const interval = setInterval(() => {
+
+    document.getElementById("radioMessage").innerText =
+      "Radio will be deselected in " + countdown + " seconds...";
+
+    countdown--;
+
+    if (countdown < 0) {
+      clearInterval(interval);
+
+      targetRadio.checked = false;
+      document.getElementById("radioMessage").innerText = "";
+
+      if (phase === 1) {
+        phase = 2;
+        document.getElementById("status").innerText =
+          "7th radio button is going to select";
+        startTimer();
+      }
+    }
+
+  }, 1000);
+}
+
+startTimer();
+
+</script>
+
+</body>
+</html>

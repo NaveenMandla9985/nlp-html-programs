@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Text Absent Test</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #text {
+      font-size: 20px;
+      color: green;
+      margin-top: 20px;
+    }
+  </style>
+
+  <script>
+    function removeText() {
+      const element = document.getElementById("text");
+
+      // Simulate delay (important for testing wait)
+      setTimeout(() => {
+        if (element) {
+          element.remove(); // ✅ removes from DOM
+        }
+      }, 3000); // 3 seconds delay
+    }
+  </script>
+
+</head>
+<body>
+
+<h2>Test for "Text Absent" NLP</h2>
+
+<p id="text">test data</p>
+
+<button onclick="removeText()">Remove Text</button>
+
+</body>
+</html>

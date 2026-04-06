@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>URL Test App with Delay</title>
+
+  <script>
+    function navigate(page) {
+      document.getElementById("content").innerText = "Loading " + page + "...";
+
+      // Simulate API / page load delay (3 seconds)
+      setTimeout(() => {
+        window.location.hash = page;
+        document.getElementById("content").innerText = "Current Page: " + page;
+      }, 40000);
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>URL Testing App (Lazy Load)</h1>
+
+  <button onclick="navigate('home')">Go to Home</button>
+  <button onclick="navigate('dashboard')">Go to Dashboard</button>
+  <button onclick="navigate('help')">Go to Help</button>
+
+  <h2 id="content">Current Page: None</h2>
+
+</body>
+</html>

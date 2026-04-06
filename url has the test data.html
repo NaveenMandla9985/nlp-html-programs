@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>URL Change Test</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+    }
+  </style>
+
+  <script>
+    function changeURL() {
+      document.getElementById("status").innerText = "Redirecting in 3 seconds...";
+
+      setTimeout(() => {
+        // Change URL (without reloading page)
+        window.history.pushState({}, "", "?status=success");
+
+        document.getElementById("status").innerText = "URL changed!";
+      }, 3000);
+    }
+  </script>
+</head>
+<body>
+
+<h2>Test for "URL Contains" NLP</h2>
+
+<button onclick="changeURL()">Change URL</button>
+
+<div id="status">Click button to change URL</div>
+
+</body>
+</html>
