@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Full NLP Test Page</title>
+  <style>
+    #delayedButton, #restartButton {
+      display: none;
+      font-size: 18px;
+      padding: 10px 20px;
+      background-color: green;
+      color:white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #timer {
+      font-size: 20px;
+      color: blue;
+      margin-top: 10px;
+    }
+    #message {
+      font-size: 18px;
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 id="statusText">Waiting for element...</h2>
+
+  <p id="timer"></p>
+  <p id="message"></p>
+
+  <button id="delayedButton">visible button</button>
+
+  <button id="restartButton">Start again</button>
+
+  <script>
+    let seconds = 28;
+    const timer = document.getElementById("timer");
+    const statusText = document.getElementById("statusText");
+    const button = document.getElementById("delayedButton");
+    const message = document.getElementById("message");
+    const restartButton = document.getElementById("restartButton");
+
+    // 🔁 Redirected state
+    if (window.location.search.includes("redirected=true")) {
+
+      statusText.innerText = "do you wish to start the page again? then click the below button";
+      timer.style.display = "none";
+      message.style.display = "none";
+      button.style.display = "none";
+
+      restartButton.style.display = "inline-block";
+
+      restartButton.addEventListener("click", () => {
+        window.location.href = window.location.pathname; // restart flow
+      });
+
+    } else {
+
+      // ⏱️ Countdown
+      const interval = setInterval(() => {
+
+        timer.innerText = "Element will appear in " + seconds + " seconds";
+
+        if (seconds === 5) {
+          message.innerText = "element will be visible in another 5 seconds.... please be patience";
+        }
+
+        seconds--;
+
+        if (seconds < 0) {
+          clearInterval(interval);
+        }
+
+      }, 1000);
+
+      // 🔘 Show button
+      setTimeout(() => {
+        button.style.display = "inline-block";
+        statusText.style.display = "none";
+        timer.style.display = "none";
+        message.style.display = "none";
+      }, 28000);
+
+      // 👉 Click behavior
+      button.addEventListener("click", () => {
+
+        message.style.display = "block";
+        message.innerText = "Redirecting in 4 seconds...";
+        button.disabled = true;
+
+        setTimeout(() => {
+          window.location.href = window.location.pathname + "?redirected=true";
+        }, 4000);
+
+      });
+
+    }
+  </script>
+
+</body>
+</html>
