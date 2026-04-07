@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Elements Playground</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background:#06b6d4;
+    color: #e5e7eb;
+    margin: 0;
+}
+
+/* CONTAINER */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px;
+}
+
+/* TITLE */
+h1 {
+    text-align: center;
+    color: red;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* CARD */
+.card {
+    background: #2d3748;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* INPUTS */
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: none;
+    background: #4b5563;
+    color: white;
+    outline: none;
+}
+
+/* FOCUS EFFECT */
+input:focus, textarea:focus {
+    border: 2px solid #60a5fa;
+}
+
+/* INLINE FIX */
+.inline-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0;
+}
+
+.inline-group input {
+    width: auto;
+}
+
+/* BUTTON */
+button {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: none;
+    background: #6366f1;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4f46e5;
+}
+
+button:disabled {
+    background: gray;
+}
+
+/* LINK */
+.link {
+    color: #93c5fd;
+}
+
+/* IMAGE GRID */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+/* FLIP */
+.flip-card {
+    perspective: 1000px;
+}
+
+.flip-inner {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.flip-card:hover .flip-inner {
+    transform: rotateY(180deg);
+}
+
+/* FRONT */
+.front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    backface-visibility: hidden;
+}
+
+.front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* BACK */
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    transform: rotateY(180deg);
+}
+div{
+    color: crimson;
+}
+
+/* COLORS */
+.color1 { background: #ffffff; }
+.color2 { background: #facc15; }
+.color3 { background: #ef4444; }
+.color4 { background: #2563eb; }
+.color5 { background: #f97316; }
+.color6 { background: #16a34a; }
+.color7 { background: #9333ea; }
+.color8 { background: #ec4899; }
+.color9 { background: #06b6d4; }
+.color10 { background: #92400e; }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>✨ UI Elements Playground</h1>
+
+<!-- TEXT -->
+<div class="card">
+<h3>Text Inputs</h3>
+<input placeholder="Enter your name">
+<input placeholder="Enter your email">
+<textarea placeholder="Enter your message"></textarea>
+</div>
+
+<!-- CALENDAR -->
+<div class="card">
+<h3>Calendar</h3>
+<input type="date">
+<input type="datetime-local">
+</div>
+
+<!-- RADIO -->
+<div class="card">
+<h3>Radio Buttons</h3>
+<div class="inline-group">
+<input type="radio" name="gender">
+<label>Male</label>
+</div>
+<div class="inline-group">
+<input type="radio" name="gender">
+<label>Female</label>
+</div>
+</div>
+
+<!-- CHECKBOX -->
+<div class="card">
+<h3>Checkbox</h3>
+<div class="inline-group">
+<input type="checkbox">
+<label>Accept Terms</label>
+</div>
+<div class="inline-group">
+<input type="checkbox">
+<label>Subscribe</label>
+</div>
+</div>
+
+<!-- DROPDOWN -->
+<div class="card">
+<h3>Dropdown</h3>
+<select>
+<option>Select Country</option>
+<option>India</option>
+<option>USA</option>
+<option>Germany</option>
+</select>
+</div>
+
+<!-- BUTTONS -->
+<div class="card">
+<h3>Buttons</h3>
+<button onclick="alert('Clicked')">Click</button>
+<button ondblclick="alert('Double Clicked')">Double Click</button>
+</div>
+
+<!-- DISABLED -->
+<div class="card">
+<h3>Disabled Elements</h3>
+<input disabled placeholder="Disabled Input">
+<button disabled>Disabled Button</button>
+
+<div class="inline-group">
+<input type="checkbox" disabled>
+<label>Disabled Checkbox</label>
+</div>
+
+<div class="inline-group">
+<input type="radio" disabled>
+<label>Disabled Radio</label>
+</div>
+
+<span>Disabled Text</span><br>
+<a class="link">Disabled Link</a>
+</div>
+
+
+<!-- FLIP -->
+<div class="card">
+    <h3>Hover Flip (Image → Color)</h3>
+    
+    <div class="image-grid">
+    
+    <div class="flip-card" id="image1"><div class="flip-inner">
+    <div class="front"><img src="https://images.unsplash.com/photo-1494526585095-c41746248156"></div>
+    <div class="back color1"></div>
+    </div></div>
+    
+    <div class="flip-card" id="image2"><div class="flip-inner">
+    <div class="front"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"></div>
+    <div class="back color2"></div>
+    </div></div>
+    
+    <div class="flip-card" id="image3"><div class="flip-inner">
+    <div class="front"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"></div>
+    <div class="back color3"></div>
+    </div></div>
+    
+    <div class="flip-card" id="image4"><div class="flip-inner">
+    <div class="front"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e"></div>
+    <div class="back color4"></div>
+    </div></div>
+    
+    <div class="flip-card" id="image5"><div class="flip-inner">
+    <div class="front"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"></div>
+    <div class="back color5"></div>
+    </div></div>
+    
+    <div class="flip-card" id="image6"><div class="flip-inner">
+    <div class="front"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429"></div>
+    <div class="back color6"></div>
+    </div></div>
+    
+    <div class="flip-card" id="image7"><div class="flip-inner">
+    <div class="front"><img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7"></div>
+    <div class="back color7"></div>
+    </div></div>
+    
+    <div class="flip-card" id="image8"><div class="flip-inner">
+    <div class="front"><img src="https://images.unsplash.com/photo-1503264116251-35a269479413"></div>
+    <div class="back color8"></div>
+    </div></div>
+    
+    <div class="flip-card" id="image9"><div class="flip-inner">
+    <div class="front"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d"></div>
+    <div class="back color9"></div>
+    </div></div>
+    
+    <div class="flip-card" id="image10"><div class="flip-inner">
+    <div class="front"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7"></div>
+    <div class="back color10"></div>
+    </div></div>
+    
+    </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>
