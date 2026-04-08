@@ -30,7 +30,7 @@ h1 {
 
 /* CARD */
 .card {
-    background: #2d3748;
+    background:cornsilk;
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 20px;
@@ -93,7 +93,9 @@ button:disabled {
 .image-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 15px;
+    padding: 50px;
+    padding-block:initial;
+    gap: 30px;
 }
 
 /* FLIP */
@@ -116,6 +118,7 @@ button:disabled {
 /* FRONT */
 .front {
     position: absolute;
+    padding-block-end: 1000px;
     width: 100%;
     height: 100%;
     z-index: 2;
@@ -139,6 +142,26 @@ button:disabled {
 }
 div{
     color: crimson;
+}
+
+/* Apply not-allowed cursor to all disabled elements */
+input:disabled,
+button:disabled,
+select:disabled,
+textarea:disabled {
+    cursor: not-allowed;
+}
+
+/* Disabled checkbox & radio wrapper */
+.inline-group input:disabled + label {
+    cursor: not-allowed;
+}
+
+/* Disabled link simulation */
+.link.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 /* COLORS */
@@ -226,6 +249,8 @@ div{
 <h3>Disabled Elements</h3>
 <input disabled placeholder="Disabled Input">
 <button disabled>Disabled Button</button>
+<br><br>
+<a class="link disabled">    Disabled Link?</a>
 
 <div class="inline-group">
 <input type="checkbox" disabled>
@@ -236,11 +261,6 @@ div{
 <input type="radio" disabled>
 <label>Disabled Radio</label>
 </div>
-
-<span>Disabled Text</span><br>
-<a class="link">Disabled Link</a>
-</div>
-
 
 <!-- FLIP -->
 <div class="card">
