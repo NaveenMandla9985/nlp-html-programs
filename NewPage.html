@@ -8,7 +8,7 @@
 <style>
 body {
     font-family: 'Segoe UI', sans-serif;
-    background:#06b6d4;
+    background:midnightblue;
     color: #e5e7eb;
     margin: 0;
 }
@@ -25,12 +25,11 @@ h1 {
     text-align: center;
     color: red;
     margin-bottom: 30px;
-    font-size: 28px;
 }
 
 /* CARD */
 .card {
-    background:cornsilk;
+    background: rgb(182, 158, 168);
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 20px;
@@ -44,17 +43,11 @@ input, textarea, select {
     margin: 8px 0;
     border-radius: 6px;
     border: none;
-    background: #4b5563;
-    color: white;
-    outline: none;
+    background: white;
+    color: black;
 }
 
-/* FOCUS EFFECT */
-input:focus, textarea:focus {
-    border: 2px solid #60a5fa;
-}
-
-/* INLINE FIX */
+/* INLINE */
 .inline-group {
     display: flex;
     align-items: center;
@@ -89,13 +82,29 @@ button:disabled {
     color: #93c5fd;
 }
 
-/* IMAGE GRID */
+/* DISABLED CURSOR */
+input:disabled,
+button:disabled,
+select:disabled,
+textarea:disabled {
+    cursor: not-allowed;
+}
+
+.inline-group input:disabled + label {
+    cursor: not-allowed;
+}
+
+.link.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* GRID */
 .image-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    padding: 50px;
-    padding-block:initial;
-    gap: 30px;
+    gap: 25px;
 }
 
 /* FLIP */
@@ -115,67 +124,38 @@ button:disabled {
     transform: rotateY(180deg);
 }
 
-/* FRONT */
-.front {
+/* FRONT + BACK */
+.front, .back {
     position: absolute;
-    padding-block-end: 1000px;
     width: 100%;
     height: 100%;
-    z-index: 2;
+    border-radius: 10px;
     backface-visibility: hidden;
 }
 
-.front img {
+.front img, .back img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
 }
 
+/* COUNTRY NAME */
+.country-name {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
 /* BACK */
 .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
     transform: rotateY(180deg);
 }
-div{
-    color: crimson;
-}
-
-/* Apply not-allowed cursor to all disabled elements */
-input:disabled,
-button:disabled,
-select:disabled,
-textarea:disabled {
-    cursor: not-allowed;
-}
-
-/* Disabled checkbox & radio wrapper */
-.inline-group input:disabled + label {
-    cursor: not-allowed;
-}
-
-/* Disabled link simulation */
-.link.disabled {
-    pointer-events: none;
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-/* COLORS */
-.color1 { background: #ffffff; }
-.color2 { background: #facc15; }
-.color3 { background: #ef4444; }
-.color4 { background: #2563eb; }
-.color5 { background: #f97316; }
-.color6 { background: #16a34a; }
-.color7 { background: #9333ea; }
-.color8 { background: #ec4899; }
-.color9 { background: #06b6d4; }
-.color10 { background: #92400e; }
-
 </style>
 </head>
 
@@ -250,7 +230,7 @@ textarea:disabled {
 <input disabled placeholder="Disabled Input">
 <button disabled>Disabled Button</button>
 <br><br>
-<a class="link disabled">    Disabled Link?</a>
+<a class="link disabled">Disabled Link</a>
 
 <div class="inline-group">
 <input type="checkbox" disabled>
@@ -261,66 +241,106 @@ textarea:disabled {
 <input type="radio" disabled>
 <label>Disabled Radio</label>
 </div>
+</div>
 
 <!-- FLIP -->
 <div class="card">
-    <h3>Hover Flip (Image → Color)</h3>
-    
-    <div class="image-grid">
-    
-    <div class="flip-card" id="image1"><div class="flip-inner">
-    <div class="front"><img src="https://images.unsplash.com/photo-1494526585095-c41746248156"></div>
-    <div class="back color1"></div>
-    </div></div>
-    
-    <div class="flip-card" id="image2"><div class="flip-inner">
-    <div class="front"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"></div>
-    <div class="back color2"></div>
-    </div></div>
-    
-    <div class="flip-card" id="image3"><div class="flip-inner">
-    <div class="front"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"></div>
-    <div class="back color3"></div>
-    </div></div>
-    
-    <div class="flip-card" id="image4"><div class="flip-inner">
-    <div class="front"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e"></div>
-    <div class="back color4"></div>
-    </div></div>
-    
-    <div class="flip-card" id="image5"><div class="flip-inner">
-    <div class="front"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"></div>
-    <div class="back color5"></div>
-    </div></div>
-    
-    <div class="flip-card" id="image6"><div class="flip-inner">
-    <div class="front"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429"></div>
-    <div class="back color6"></div>
-    </div></div>
-    
-    <div class="flip-card" id="image7"><div class="flip-inner">
-    <div class="front"><img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7"></div>
-    <div class="back color7"></div>
-    </div></div>
-    
-    <div class="flip-card" id="image8"><div class="flip-inner">
-    <div class="front"><img src="https://images.unsplash.com/photo-1503264116251-35a269479413"></div>
-    <div class="back color8"></div>
-    </div></div>
-    
-    <div class="flip-card" id="image9"><div class="flip-inner">
-    <div class="front"><img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d"></div>
-    <div class="back color9"></div>
-    </div></div>
-    
-    <div class="flip-card" id="image10"><div class="flip-inner">
-    <div class="front"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7"></div>
-    <div class="back color10"></div>
-    </div></div>
-    
-    </div>
-    </div>
+<h3>🌍 Hover Flip (Place → Flag)</h3>
 
+<div class="image-grid">
+
+<!-- INDIA -->
+<div class="flip-card"><div class="flip-inner">
+<div class="front">
+<img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da">
+<div class="country-name">India</div>
+</div>
+<div class="back"><img src="https://flagcdn.com/w320/in.png"></div>
+</div></div>
+
+<!-- USA -->
+<div class="flip-card"><div class="flip-inner">
+<div class="front">
+<img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad">
+<div class="country-name">USA</div>
+</div>
+<div class="back"><img src="https://flagcdn.com/w320/us.png"></div>
+</div></div>
+
+<!-- FRANCE -->
+<div class="flip-card"><div class="flip-inner">
+<div class="front">
+<img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34">
+<div class="country-name">France</div>
+</div>
+<div class="back"><img src="https://flagcdn.com/w320/fr.png"></div>
+</div></div>
+
+<!-- GERMANY -->
+<div class="flip-card"><div class="flip-inner">
+<div class="front">
+<img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b">
+<div class="country-name">Germany</div>
+</div>
+<div class="back"><img src="https://flagcdn.com/w320/de.png"></div>
+</div></div>
+
+<!-- JAPAN -->
+<div class="flip-card"><div class="flip-inner">
+<div class="front">
+<img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e">
+<div class="country-name">Japan</div>
+</div>
+<div class="back"><img src="https://flagcdn.com/w320/jp.png"></div>
+</div></div>
+
+<!-- CHINA -->
+<div class="flip-card"><div class="flip-inner">
+<div class="front">
+<img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d">
+<div class="country-name">China</div>
+</div>
+<div class="back"><img src="https://flagcdn.com/w320/cn.png"></div>
+</div></div>
+
+<!-- KOREA -->
+<div class="flip-card"><div class="flip-inner">
+<div class="front">
+<img src="https://images.unsplash.com/photo-1549693578-d683be217e58">
+<div class="country-name">Korea</div>
+</div>
+<div class="back"><img src="https://flagcdn.com/w320/kr.png"></div>
+</div></div>
+
+<!-- ENGLAND -->
+<div class="flip-card"><div class="flip-inner">
+<div class="front">
+<img src="https://images.unsplash.com/photo-1473959383413-cbf17c3c48e1">
+<div class="country-name">England</div>
+</div>
+<div class="back"><img src="https://flagcdn.com/w320/gb.png"></div>
+</div></div>
+
+<!-- NEW ZEALAND -->
+<div class="flip-card"><div class="flip-inner">
+<div class="front">
+<img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad">
+<div class="country-name">New Zealand</div>
+</div>
+<div class="back"><img src="https://flagcdn.com/w320/nz.png"></div>
+</div></div>
+
+<!-- AUSTRALIA -->
+<div class="flip-card"><div class="flip-inner">
+<div class="front">
+<img src="https://images.unsplash.com/photo-1506976785307-8732e854ad03">
+<div class="country-name">Australia</div>
+</div>
+<div class="back"><img src="https://flagcdn.com/w320/au.png"></div>
+</div></div>
+
+</div>
+</div>
 
 </div>
 
