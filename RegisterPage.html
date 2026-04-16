@@ -28,6 +28,11 @@ h1 {
     box-shadow: 0 0 5px gray;
 }
 
+/* 🔴 Mandatory label */
+.required {
+    color: rgb(47, 0, 255);
+}
+
 label {
     display: block;
     margin-top: 10px;
@@ -82,12 +87,19 @@ button {
     color: white;
 }
 
+/* Disabled button */
 .register-btn {
     width: 100%;
     margin-top: 15px;
-    background: #27ae60;
+    background: gray;
     color: white;
     border: none;
+    cursor: not-allowed;
+}
+
+.register-btn.enabled {
+    background: #27ae60;
+    cursor: pointer;
 }
 
 /* Content section */
@@ -107,6 +119,7 @@ function toggleExperience() {
     let expYes = document.getElementById("experienced_yes");
     document.getElementById("experience_dropdown").style.display =
         expYes.checked ? "block" : "none";
+    checkForm();
 }
 
 function selectCourse(btn) {
@@ -114,18 +127,27 @@ function selectCourse(btn) {
     btn.innerText = btn.innerText === "Select" ? "Selected" : "Select";
 }
 
-function validateForm() {
+/* 🔥 Enable button only when form valid */
+function checkForm() {
     let name = document.getElementById("name").value.trim();
     let email = document.getElementById("email").value.trim();
     let phone = document.getElementById("phone").value.trim();
     let exp = document.querySelector('input[name="experience"]:checked');
 
-    if (!name || !email || !phone || !exp) {
-        alert("Please fill all mandatory fields!");
-        return;
-    }
+    let registerBtn = document.getElementById("registerBtn");
 
+    if (name && email && phone && exp) {
+        registerBtn.disabled = false;
+        registerBtn.classList.add("enabled");
+    } else {
+        registerBtn.disabled = true;
+        registerBtn.classList.remove("enabled");
+    }
+}
+
+function validateForm() {
     let selected = document.querySelectorAll(".selected-btn");
+
     if (selected.length === 0) {
         alert("Select at least one course!");
         return;
@@ -144,20 +166,20 @@ function validateForm() {
 
 <div class="container">
 
-<label>Full Name *</label>
-<input type="text" id="name">
+<label class="required">Full Name *</label>
+<input type="text" id="name" oninput="checkForm()">
 
-<label>Email *</label>
-<input type="email" id="email">
+<label class="required">Email *</label>
+<input type="email" id="email" oninput="checkForm()">
 
-<label>Phone Number *</label>
-<input type="tel" id="phone">
+<label class="required">Phone Number *</label>
+<input type="tel" id="phone" oninput="checkForm()">
 
 <div class="inline">
 <input type="checkbox"> Receive Notifications on WhatsApp
 </div>
 
-<label>Experience *</label>
+<label class="required">Experience *</label>
 
 <div class="inline">
 <input type="radio" name="experience" onclick="toggleExperience()"> Fresher
@@ -188,7 +210,9 @@ function validateForm() {
 <tr><td>Tosca</td><td><button onclick="selectCourse(this)">Select</button></td></tr>
 </table>
 
-<button class="register-btn" onclick="validateForm()">Register</button>
+<button id="registerBtn" class="register-btn" onclick="validateForm()" disabled>
+Register
+</button>
 
 </div>
 
@@ -209,13 +233,22 @@ function validateForm() {
 <p>Foundation of software quality assurance.</p>
 
 <h3>Appium</h3>
-<img src="https://avatars.githubusercontent.com/u/3221291?s=200&v=4" width="120">
+<img src="https://avatars.githubusercontent.com/u/3221291?s=200&v=4">
 <p>Mobile automation tool for Android & iOS.</p>
 
 <h3>Tosca</h3>
-<img src="https://seeklogo.com/images/T/tricentis-tosca-logo-4F9B9B4B43-seeklogo.com.png" width="120">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Tricentis_Tosca_Logo.png/512px-Tricentis_Tosca_Logo.png" width="120">
 <p>Codeless automation for enterprise apps.</p>
 
+<!-- About Section -->
+<div class="section">
+<h2>About Software Testing</h2>
+<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c">
+<p style="width:70%; margin:auto;">
+Software testing ensures quality, reliability, and performance of applications.
+It helps identify bugs before production and improves user experience.
+Testing includes manual and automation techniques across web, mobile, and APIs.
+</p>
 </div>
 
 </body>
