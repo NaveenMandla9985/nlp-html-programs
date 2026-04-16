@@ -1,350 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Register Naveen Testing Demos</title>
+<meta charset="UTF-8">
+<title>Register Naveen Testing Demos</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f4f7fb;
-            font-size: 14px;
-        }
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f4f7fb;
+    font-size: 14px;
+}
 
-        h1 {
-            background-color: #2c3e50;
-            color: white;
-            padding: 10px;
-            font-size: 20px;
-            text-align: center;
-        }
+h1 {
+    background: #2c3e50;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
 
-        h2 {
-            text-align: center;
-            font-size: 18px;
-            color: #2c3e50;
-        }
+.container {
+    width: 50%;
+    margin: 20px auto;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px gray;
+}
 
-        .container {
-            width: 50%;
-            margin: 20px auto;
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 5px gray;
-        }
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
 
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 10px;
-        }
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+    width: 95%;
+    padding: 4px;
+}
 
-        /* Smaller input fields */
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        select {
-            width: 95%;
-            padding: 4px;
-            font-size: 13px;
-        }
+.inline {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-weight: normal;
+}
 
-        /* Fix checkbox & radio alignment */
-        .inline {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 8px;
-            font-weight: normal;
-        }
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+}
 
-        input[type="checkbox"],
-        input[type="radio"] {
-            width: auto;
-        }
+table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            font-size: 13px;
-        }
+table, th, td {
+    border: 1px solid gray;
+    padding: 6px;
+    text-align: center;
+}
 
-        table, th, td {
-            border: 1px solid gray;
-            padding: 6px;
-            text-align: center;
-        }
+th {
+    background: #3498db;
+    color: white;
+}
 
-        th {
-            background-color: #3498db;
-            color: white;
-        }
+button {
+    padding: 5px 8px;
+    cursor: pointer;
+}
 
-        button {
-            padding: 5px 8px;
-            font-size: 12px;
-            cursor: pointer;
-        }
+.selected-btn {
+    background: green;
+    color: white;
+}
 
-        .selected-btn {
-            background-color: green;
-            color: white;
-        }
+.register-btn {
+    width: 100%;
+    margin-top: 15px;
+    background: #27ae60;
+    color: white;
+    border: none;
+}
 
-        .register-btn {
-            width: 100%;
-            margin-top: 15px;
-            background-color: #27ae60;
-            color: white;
-            font-size: 14px;
-            border: none;
-        }
+/* Content section */
+.section {
+    text-align: center;
+    margin-top: 40px;
+}
 
-        img {
-            display: block;
-            margin: 20px auto;
-            width: 60%;
-            border-radius: 10px;
-        }
+.section img {
+    width: 120px;
+    margin: 10px;
+}
+</style>
 
-        /* Thank You Page */
-        #thankyouPage {
-            display: none;
-            text-align: center;
-            padding: 40px;
-        }
+<script>
+function toggleExperience() {
+    let expYes = document.getElementById("experienced_yes");
+    document.getElementById("experience_dropdown").style.display =
+        expYes.checked ? "block" : "none";
+}
 
-        #thankyouPage h1 {
-            color: #27ae60;
-            font-size: 26px;
-        }
-    </style>
+function selectCourse(btn) {
+    btn.classList.toggle("selected-btn");
+    btn.innerText = btn.innerText === "Select" ? "Selected" : "Select";
+}
 
-    <script>
-        function toggleExperience() {
-            let expYes = document.getElementById("experienced_yes");
-            let dropdown = document.getElementById("experience_dropdown");
-            dropdown.style.display = expYes.checked ? "block" : "none";
-        }
+function validateForm() {
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let exp = document.querySelector('input[name="experience"]:checked');
 
-        function selectCourse(button) {
-            if (button.innerText === "Select") {
-                button.innerText = "Selected";
-                button.classList.add("selected-btn");
-            } else {
-                button.innerText = "Select";
-                button.classList.remove("selected-btn");
-            }
-        }
+    if (!name || !email || !phone || !exp) {
+        alert("Please fill all mandatory fields!");
+        return;
+    }
 
-        function validateForm() {
-            let name = document.getElementById("name").value.trim();
-            let email = document.getElementById("email").value.trim();
-            let phone = document.getElementById("phone").value.trim();
-            let experience = document.querySelector('input[name="experience"]:checked');
+    let selected = document.querySelectorAll(".selected-btn");
+    if (selected.length === 0) {
+        alert("Select at least one course!");
+        return;
+    }
 
-            if (name === "" || email === "" || phone === "" || !experience) {
-                alert("Please fill all mandatory fields!");
-                return;
-            }
-
-            let selectedCourses = document.querySelectorAll(".selected-btn");
-
-            if (selectedCourses.length === 0) {
-                alert("Please select at least one course!");
-                return;
-            }
-
-            let courses = [];
-            selectedCourses.forEach(btn => {
-                let courseName = btn.parentElement.previousElementSibling.innerText;
-                courses.push(courseName);
-            });
-
-            let confirmationMessage =
-                "You have entered:\n\n" +
-                "Name: " + name + "\n" +
-                "Email: " + email + "\n" +
-                "Phone: " + phone + "\n" +
-                "Courses: " + courses.join(", ") + "\n\n" +
-                "Are you sure you want to register?";
-
-            if (confirm(confirmationMessage)) {
-                showThankYouPage();
-            }
-        }
-
-        function showThankYouPage() {
-            document.getElementById("formPage").style.display = "none";
-            document.getElementById("thankyouPage").style.display = "block";
-        }
-    </script>
+    if (confirm("Are you sure you want to register?")) {
+        window.location.href = "thankyou.html";
+    }
+}
+</script>
 </head>
 
 <body>
-
-<!-- FORM PAGE -->
-<div id="formPage">
 
 <h1>Register Naveen Testing Demos</h1>
 
 <div class="container">
 
-    <label>Full Name *</label>
-    <input type="text" id="name">
+<label>Full Name *</label>
+<input type="text" id="name">
 
-    <label>Email *</label>
-    <input type="email" id="email">
+<label>Email *</label>
+<input type="email" id="email">
 
-    <label>Phone Number *</label>
-    <input type="tel" id="phone">
+<label>Phone Number *</label>
+<input type="tel" id="phone">
 
-    <!-- Checkbox -->
-    <div class="inline">
-        <input type="checkbox" id="whatsapp">
-        <span>Receive Notifications on WhatsApp</span>
-    </div>
-
-    <!-- Radio Buttons -->
-    <label>Experience *</label>
-
-    <div class="inline">
-        <input type="radio" name="experience" id="fresher" onclick="toggleExperience()">
-        <span>Fresher</span>
-    </div>
-
-    <div class="inline">
-        <input type="radio" name="experience" id="experienced_yes" onclick="toggleExperience()">
-        <span>Experienced</span>
-    </div>
-
-    <div id="experience_dropdown" style="display:none;">
-        <label>Select Experience *</label>
-        <select>
-            <option value="">--Select--</option>
-            <option>1-2 Years</option>
-            <option>2-4 Years</option>
-            <option>5-10 Years</option>
-            <option>Above 10 Years</option>
-        </select>
-    </div>
-
-    <!-- Course Selection -->
-    <h2>Course Selection</h2>
-
-    <table>
-        <tr>
-            <th>Course Name</th>
-            <th>Select</th>
-        </tr>
-        <tr>
-            <td>Manual Testing</td>
-            <td><button onclick="selectCourse(this)">Select</button></td>
-        </tr>
-        <tr>
-            <td>Automation using Java - Selenium</td>
-            <td><button onclick="selectCourse(this)">Select</button></td>
-        </tr>
-        <tr>
-            <td>Playwright</td>
-            <td><button onclick="selectCourse(this)">Select</button></td>
-        </tr>
-        <tr>
-            <td>Appium for Mobile Application Testing</td>
-            <td><button onclick="selectCourse(this)">Select</button></td>
-        </tr>
-        <tr>
-            <td>Tosca for Desktop Automation</td>
-            <td><button onclick="selectCourse(this)">Select</button></td>
-        </tr>
-    </table>
-
-    <button class="register-btn" onclick="validateForm()">Register</button>
-
-</div>
+<div class="inline">
+<input type="checkbox"> Receive Notifications on WhatsApp
 </div>
 
-<!-- Learning Sections -->
-<div style="margin-top: 40px; text-align:center;">
+<label>Experience *</label>
 
-    <h2>Explore Software Testing Technologies</h2>
+<div class="inline">
+<input type="radio" name="experience" onclick="toggleExperience()"> Fresher
+</div>
 
-    <!-- Playwright -->
-    <h3>Playwright Automation</h3>
-    <img src="https://playwright.dev/img/playwright-logo.svg" style="width:120px;">
-    <p style="width:70%; margin:auto;">
-        Playwright is a modern automation tool used for end-to-end testing of web applications.
-        It supports multiple browsers like Chromium, Firefox, and WebKit with powerful features
-        like auto-wait, network interception, and parallel execution.
-    </p>
+<div class="inline">
+<input type="radio" name="experience" id="experienced_yes" onclick="toggleExperience()"> Experienced
+</div>
 
-    <!-- Selenium -->
-    <h3>Selenium with Java</h3>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Selenium_Logo.png" style="width:120px;">
-    <p style="width:70%; margin:auto;">
-        Selenium is one of the most popular automation tools used for web testing.
-        It supports multiple programming languages like Java, Python, and C#.
-        Selenium WebDriver is widely used for UI automation in real-world projects.
-    </p>
+<div id="experience_dropdown" style="display:none;">
+<label>Select Experience</label>
+<select>
+<option>1-2 Years</option>
+<option>2-4 Years</option>
+<option>5-10 Years</option>
+<option>Above 10 Years</option>
+</select>
+</div>
 
-    <!-- Manual Testing -->
-    <h3>Manual Testing</h3>
-    <img src="https://cdn-icons-png.flaticon.com/512/2620/2620973.png" style="width:120px;">
-    <p style="width:70%; margin:auto;">
-        Manual testing involves verifying the application without using automation tools.
-        It focuses on exploratory testing, usability, and understanding business requirements.
-        It is the foundation for all QA engineers.
-    </p>
+<h2 style="text-align:center;">Course Selection</h2>
 
-    <!-- Appium -->
-    <h3>Appium - Mobile Testing</h3>
-    <img src="https://appium.io/images/appium-logo-horiz.png" style="width:150px;">
-    <p style="width:70%; margin:auto;">
-        Appium is used for mobile application testing (Android & iOS).
-        It allows automation using the same APIs for different platforms and supports
-        multiple languages like Java and JavaScript.
-    </p>
+<table>
+<tr><th>Course</th><th>Select</th></tr>
+<tr><td>Manual Testing</td><td><button onclick="selectCourse(this)">Select</button></td></tr>
+<tr><td>Selenium Java</td><td><button onclick="selectCourse(this)">Select</button></td></tr>
+<tr><td>Playwright</td><td><button onclick="selectCourse(this)">Select</button></td></tr>
+<tr><td>Appium</td><td><button onclick="selectCourse(this)">Select</button></td></tr>
+<tr><td>Tosca</td><td><button onclick="selectCourse(this)">Select</button></td></tr>
+</table>
 
-    <!-- Tosca -->
-    <h3>Tosca Automation</h3>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Tricentis_Tosca_Logo.png" style="width:150px;">
-    <p style="width:70%; margin:auto;">
-        Tosca is a model-based test automation tool used for enterprise applications.
-        It provides codeless automation and is widely used in large organizations
-        for SAP, API, and UI testing.
-    </p>
+<button class="register-btn" onclick="validateForm()">Register</button>
 
 </div>
 
+<!-- Learning Section -->
+<div class="section">
+<h2>Explore Testing Tools</h2>
 
-<br>
+<h3>Playwright</h3>
+<img src="https://playwright.dev/img/playwright-logo.svg">
+<p>Modern automation tool for fast UI testing.</p>
 
-<!-- About Section -->
-<div style="margin-top: 30px;">
-    <h2>About Software Testing</h2>
+<h3>Selenium</h3>
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Selenium_Logo.png">
+<p>Most popular web automation framework.</p>
 
-    <p style="text-align:center; width:80%; margin:auto;">
-        Software testing is a process used to identify the correctness, completeness, and quality of developed computer software. 
-        It ensures that the application meets the business requirements and works as expected without defects. 
-        Testing includes manual and automated approaches to validate functionality, performance, usability, and security.
-    </p>
-</div>
+<h3>Manual Testing</h3>
+<img src="https://cdn-icons-png.flaticon.com/512/2620/2620973.png">
+<p>Foundation of software quality assurance.</p>
 
-<img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" 
-     style="width:50%; display:block; margin:15px auto; border-radius:10px;">
+<h3>Appium</h3>
+<img src="https://appium.io/images/appium-logo-horiz.png">
+<p>Mobile automation tool for Android & iOS.</p>
 
-<!-- THANK YOU PAGE -->
-<div id="thankyouPage">
-
-    <h1>🎉 Thanks for Registering!</h1>
-    <p>Our team will contact you soon.</p>
-
-    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c" alt="Software Testing">
-
-    <p>Get ready to boost your software testing career 🚀</p>
+<h3>Tosca</h3>
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Tricentis_Tosca_Logo.png">
+<p>Codeless automation for enterprise apps.</p>
 
 </div>
 
