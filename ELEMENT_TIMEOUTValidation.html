@@ -2,15 +2,40 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
   <title>ELEMENT_TIMEOUT Validation</title>
 
   <style>
 
     body {
-      font-family: Arial;
+
+      font-family: Arial, sans-serif;
       padding: 40px;
+      background-color: #f5f5f5;
+
     }
+
+    h1 {
+
+      color: #333;
+
+    }
+
+    p {
+
+      margin-bottom: 20px;
+
+    }
+
+    /*
+      Element exists in DOM
+      but is never displayed
+    */
 
     #delayedButton {
 
@@ -19,7 +44,12 @@
       padding: 12px 20px;
       background-color: green;
       color: white;
+
       border: none;
+      border-radius: 5px;
+
+      font-size: 16px;
+
       cursor: pointer;
 
     }
@@ -33,22 +63,26 @@
   <h1>ELEMENT_TIMEOUT Demo</h1>
 
   <p>
-    Button will appear after 40 seconds.
+
+    The button exists in the DOM
+    but never becomes visible.
+
   </p>
 
+  <p>
+
+    Testsigma should keep waiting
+    until timeout occurs.
+
+  </p>
+
+  <!-- Hidden element -->
+
   <button id="delayedButton">
+
     Login
+
   </button>
-
-  <script>
-
-    setTimeout(() => {
-
-      document.getElementById("delayedButton").style.display = "block";
-
-    }, 40000);
-
-  </script>
 
 </body>
 
