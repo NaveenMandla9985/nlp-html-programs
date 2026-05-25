@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Post Action Assertion Failure</title>
+</head>
+
+<body>
+
+<h2>Fake Checkbox</h2>
+
+<input type="checkbox" id="fakeCheckbox"
+onclick="preventCheck(event)" />
+
+<script>
+function preventCheck(event) {
+
+  // Prevent checkbox from actually checking
+  event.preventDefault();
+
+}
+</script>
+
+</body>
+</html>
