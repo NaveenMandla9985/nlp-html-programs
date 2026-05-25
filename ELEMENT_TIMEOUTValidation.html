@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ELEMENT_TIMEOUT Validation</title>
+
+  <style>
+
+    body {
+      font-family: Arial;
+      padding: 40px;
+    }
+
+    #delayedButton {
+
+      display: none;
+
+      padding: 12px 20px;
+      background-color: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <h1>ELEMENT_TIMEOUT Demo</h1>
+
+  <p>
+    Button will appear after 30 seconds.
+  </p>
+
+  <button id="delayedButton">
+    Login
+  </button>
+
+  <script>
+
+    setTimeout(() => {
+
+      document.getElementById("delayedButton").style.display = "block";
+
+    }, 30000);
+
+  </script>
+
+</body>
+
+</html>
