@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Non Empty Text Test</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Non Empty Text NLP Test</title>
 
   <style>
     body {
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       padding: 40px;
+      background-color: #f4f4f4;
+    }
+
+    h2 {
+      color: #222;
+      margin-bottom: 20px;
     }
 
     .box {
-      margin: 20px 0;
-      padding: 15px;
       border: 1px solid #ccc;
+      padding: 15px;
+      margin-top: 20px;
+      background-color: white;
+      width: 350px;
+    }
+
+    #nonEmptyDiv {
+      color: green;
+      font-weight: bold;
+    }
+
+    #emptyDiv {
+      min-height: 25px;
     }
   </style>
 </head>
@@ -24,10 +42,12 @@
     Testsigma NLP Validation
   </h2>
 
+  <!-- Non-empty text element -->
   <div id="nonEmptyDiv" class="box">
     This div contains text.
   </div>
 
+  <!-- Empty text element -->
   <div id="emptyDiv" class="box"></div>
 
 </body>
