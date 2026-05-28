@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textbox Editable Validation</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f4f4f4;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .container {
+      margin-top: 20px;
+    }
+
+    input {
+      width: 350px;
+      padding: 12px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      display: block;
+    }
+
+    .label {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Testsigma Textbox Editable Validation</h2>
+
+  <div class="container">
+
+    <!-- Editable textbox -->
+    <label class="label">
+      Editable Textbox
+    </label>
+
+    <input
+      type="text"
+      id="editableTextbox"
+      placeholder="You can edit this textbox"
+    />
+
+    <!-- Non-editable textbox -->
+    <label class="label">
+      Non Editable Textbox
+    </label>
+
+    <input
+      type="text"
+      id="nonEditableTextbox"
+      value="This textbox is readonly"
+      readonly
+    />
+
+  </div>
+
+</body>
+</html>
