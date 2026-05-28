@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Slow Download Test - Under 50MB</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 40px;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    button {
+      padding: 14px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Slow Download Test (File Size &lt; 50MB)</h2>
+
+  <button id="downloadBtn">
+    Start Slow Download
+  </button>
+
+  <div id="status"></div>
+
+  <script>
+
+    document.getElementById("downloadBtn")
+      .addEventListener("click", function () {
+
+        const status = document.getElementById("status");
+
+        status.innerText =
+          "Preparing file... Download will start after 38 seconds.";
+
+        // Delay download for 38 seconds
+        setTimeout(() => {
+
+          // Create file content ~15-20 MB
+          let content = "";
+
+          for (let i = 0; i < 350000; i++) {
+            content +=
+              "Testsigma Slow Download Testing Line Number " +
+              i +
+              " - Sample Text Data for Download Validation.\\n";
+          }
+
+          // Create blob
+          const blob = new Blob(
+            [content],
+            { type: "text/plain" }
+          );
+
+          console.log(
+            "Generated File Size:",
+            (blob.size / (1024 * 1024)).toFixed(2),
+            "MB"
+          );
+
+          // Create downloadable URL
+          const url = URL.createObjectURL(blob);
+
+          // Create hidden anchor
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "slow-download-under-50mb.txt";
+
+          document.body.appendChild(a);
+
+          // Trigger download
+          a.click();
+
+          // Cleanup
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+
+          status.innerText =
+            "Download started successfully.";
+
+        }, 38000);
+
+      });
+
+  </script>
+
+</body>
+</html>
