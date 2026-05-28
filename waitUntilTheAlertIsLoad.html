@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>40 Seconds Lazy Load Alert</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f4f4f4;
+    }
+
+    button {
+      padding: 14px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>40 Seconds Lazy Loaded Alert</h2>
+
+  <button id="alertBtn">
+    Trigger Alert After 40 Seconds
+  </button>
+
+  <div id="status"></div>
+
+  <script>
+
+    document.getElementById("alertBtn")
+      .addEventListener("click", function () {
+
+        document.getElementById("status").innerText =
+          "Alert will appear after 40 seconds...";
+
+        // Lazy load alert after 40 seconds
+        setTimeout(() => {
+
+          alert("Lazy Loaded Alert Appeared After 40 Seconds!");
+
+          document.getElementById("status").innerText =
+            "Alert displayed successfully";
+
+        }, 40000);
+
+      });
+
+  </script>
+
+</body>
+</html>
