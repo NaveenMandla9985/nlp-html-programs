@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Navigation Failure Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Failure Test</title>
+
+    <!-- This file will never finish loading -->
+    <script src="/never-respond.js"></script>
+
 </head>
 <body>
-<script>
-  // Infinite loop blocks page load forever
-  while(true) {}
-</script>
+    <h1>Navigation Failure Test Page</h1>
+    <p>
+        This page is intentionally designed to never complete loading.
+        Automation tools waiting for the page load event should eventually timeout.
+    </p>
+
+    <script>
+        console.log("HTML loaded");
+    </script>
 </body>
 </html>
