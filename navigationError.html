@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Failure Test</title>
-
-    <!-- This file will never finish loading -->
-    <script src="/never-respond.js"></script>
-
-</head>
-<body>
-    <h1>Navigation Failure Test Page</h1>
-    <p>
-        This page is intentionally designed to never complete loading.
-        Automation tools waiting for the page load event should eventually timeout.
-    </p>
+    <title>Navigation Failure Redirect Loop 60 seconns</title>
 
     <script>
-        console.log("HTML loaded");
+        const startTime = Date.now();
+        const maxDuration = 60000; // 60 seconds
+
+        const existingStart = sessionStorage.getItem("navStart");
+
+        if (!existingStart) {
+            sessionStorage.setItem("navStart", startTime);
+        }
+
+        const elapsed = Date.now() - Number(sessionStorage.getItem("navStart"));
+
+        if (elapsed < maxDuration) {
+            setTimeout(() => {
+                location.href = location.pathname + "?t=" + Date.now();
+            }, 500);
+        } else {
+            // After 60 seconds, redirect to a hanging page
+            location.href = "hang.html";
+        }
     </script>
+</head>
+<body>
+    <h1>Redirect Loop Running...</h1>
+    <p>This page will keep redirecting for 60 seconds.</p>
 </body>
 </html>
