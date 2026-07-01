@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo Wall</title>
+<style>
+  :root{
+    --navy:#0d1633;
+    --navy-line: rgba(255,255,255,0.25);
+    --gold:#f6c344;
+    --white:#ffffff;
+    --muted: rgba(255,255,255,0.7);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background:var(--navy);
+    color:var(--white);
+  }
+  header.nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 48px;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:20px;
+    letter-spacing:1px;
+  }
+  .logo .ring{
+    width:26px;height:26px;border-radius:50%;
+    border:3px solid var(--white);
+    position:relative;
+  }
+  .logo .ring::after{
+    content:"";
+    position:absolute; top:50%; left:50%;
+    width:8px; height:8px; border-radius:50%;
+    background:var(--white);
+    transform:translate(-50%,-50%);
+  }
+  nav.links{
+    display:flex;
+    gap:34px;
+    font-size:14px;
+  }
+  nav.links a{
+    color:var(--white);
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    opacity:0.9;
+  }
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    font-size:14px;
+  }
+  .flag{width:20px;}
+
+  section.hero{
+    padding:64px 48px 40px;
+  }
+  h1.headline{
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight:400;
+    font-size:58px;
+    margin:0 0 18px;
+    line-height:1.1;
+  }
+  h2.subtitle{
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight:400;
+    font-size:26px;
+    margin:0 0 22px;
+    color:var(--white);
+  }
+  p.content-copy{
+    font-size:15px;
+    color:var(--muted);
+    margin:0 0 48px;
+  }
+
+  .carousel-wrap{
+    position:relative;
+    max-width:1500px;
+  }
+  .carousel-viewport{
+    overflow:hidden;
+    width:100%;
+  }
+  .carousel-track{
+    display:flex;
+    gap:70px;
+    transition: transform 0.45s ease;
+    align-items:center;
+  }
+  .logo-item{
+    flex:0 0 auto;
+    width:220px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    height:70px;
+  }
+  .logo-item img{
+    max-width:100%;
+    max-height:60px;
+    object-fit:contain;
+  }
+
+  .progress-bar{
+    margin-top:56px;
+    height:2px;
+    background:rgba(255,255,255,0.25);
+    position:relative;
+    max-width:1500px;
+  }
+  .progress-fill{
+    position:absolute;
+    top:0; left:0;
+    height:2px;
+    background:var(--white);
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+
+  .controls{
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+    margin-top:22px;
+    max-width:1500px;
+  }
+  .arrow-btn{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    border:none;
+    background:rgba(255,255,255,0.15);
+    color:var(--white);
+    font-size:16px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: background 0.2s ease, opacity 0.2s ease;
+  }
+  .arrow-btn:hover:not(:disabled){
+    background:rgba(255,255,255,0.3);
+  }
+  .arrow-btn:disabled{
+    opacity:0.35;
+    cursor:not-allowed;
+  }
+
+  .cta-wrap{
+    margin-top:70px;
+  }
+  .cta-btn{
+    background:var(--gold);
+    color:#1a1a1a;
+    border:none;
+    padding:16px 30px;
+    border-radius:30px;
+    font-weight:700;
+    font-size:15px;
+    cursor:pointer;
+  }
+  .cta-btn:hover{
+    filter:brightness(0.95);
+  }
+
+  .privacy{
+    position:fixed;
+    bottom:20px;
+    left:24px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--white);
+  }
+
+  @media (max-width:700px){
+    h1.headline{font-size:36px;}
+    header.nav{padding:16px 20px;}
+    section.hero{padding:36px 20px;}
+    nav.links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="logo"><span class="ring"></span> NTT DATA</div>
+  <nav class="links">
+    <a href="#">What we do ▾</a>
+    <a href="#">What we think ▾</a>
+    <a href="#">Who we are ▾</a>
+    <a href="#">Newsroom ▾</a>
+    <a href="#">Careers ▾</a>
+  </nav>
+  <div class="nav-right">
+    <span>🇺🇸 United States English ›</span>
+    <span>🔍</span>
+  </div>
+</header>
+
+<section class="hero">
+  <h1 class="headline">Logo Wall Headline</h1>
+  <h2 class="subtitle">Subtitle</h2>
+  <p class="content-copy">Content Block Copy</p>
+
+  <div class="carousel-wrap">
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="track">
+        <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Vmware_by_broadcom_logo.svg" alt="VMware by Broadcom"></div>
+        <div class="logo-item"><img src="https://companieslogo.com/img/orig/SNOW-35164165.png?t=1633073285" alt="Snowflake"></div>
+        <div class="logo-item"><img src="https://companieslogo.com/img/orig/SNOW-35164165.png?t=1633073285" alt="Snowflake"></div>
+        <div class="logo-item"><img src="https://companieslogo.com/img/orig/NOW-8b842d1f.png?t=1633073435" alt="ServiceNow"></div>
+        <div class="logo-item"><img src="https://companieslogo.com/img/orig/PANW-e02d9d6a.png?t=1633073482" alt="Palo Alto Networks"></div>
+        <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Salesforce.com_logo.svg" alt="Salesforce"></div>
+        <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft"></div>
+        <div class="logo-item"><img src="https://upload.wikimedia.org/wikipedia/commons/8/85/AWS_Simple_Icons_AWS_Cloud.svg" alt="AWS"></div>
+      </div>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="controls">
+      <button class="arrow-btn" id="prevBtn" aria-label="Previous logo">‹</button>
+      <button class="arrow-btn" id="nextBtn" aria-label="Next logo">›</button>
+    </div>
+  </div>
+
+  <div class="cta-wrap">
+    <button class="cta-btn">Logo wall CTA</button>
+  </div>
+</section>
+
+<div class="privacy">🛡️ Privacy</div>
+
+<script>
+  const track = document.getElementById('track');
+  const items = Array.from(track.children);
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const progressFill = document.getElementById('progressFill');
+  const viewport = document.querySelector('.carousel-viewport');
+  const wrap = document.querySelector('.carousel-wrap');
+
+  let currentIndex = 0;
+  const gap = 70; // must match CSS gap
+
+  function itemWidth() {
+    return items[0].getBoundingClientRect().width + gap;
+  }
+
+  function visibleCount() {
+    return Math.max(1, Math.floor(viewport.getBoundingClientRect().width / itemWidth()));
+  }
+
+  function maxIndex() {
+    return Math.max(0, items.length - visibleCount());
+  }
+
+  function update() {
+    const offset = currentIndex * itemWidth();
+    track.style.transform = `translateX(-${offset}px)`;
+
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= maxIndex();
+
+    // progress bar reflects position across the full scrollable range
+    const totalRange = maxIndex();
+    const barWidth = wrap.getBoundingClientRect().width;
+    const fillWidth = totalRange === 0 ? barWidth : (barWidth * (visibleCount() / items.length));
+    const leftPos = totalRange === 0 ? 0 : (currentIndex / totalRange) * (barWidth - fillWidth);
+    progressFill.style.width = fillWidth + 'px';
+    progressFill.style.left = leftPos + 'px';
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (currentIndex < maxIndex()) {
+      currentIndex += 1;
+      update();
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex -= 1;
+      update();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    currentIndex = Math.min(currentIndex, maxIndex());
+    update();
+  });
+
+  window.addEventListener('load', update);
+  update();
+</script>
+
+</body>
+</html>
