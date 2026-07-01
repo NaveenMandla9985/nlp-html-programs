@@ -189,6 +189,45 @@
     font-size:13px;
     font-weight:600;
     color:var(--white);
+    z-index:10;
+  }
+
+  /* Filler sections — give the page scroll room above/below the logo wall */
+  .filler{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:60px 48px;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  .filler.bottom{
+    border-bottom:none;
+    border-top:1px solid rgba(255,255,255,0.12);
+  }
+  .filler-inner{
+    max-width:760px;
+  }
+  .filler-eyebrow{
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:12px;
+    color:var(--gold);
+    font-weight:700;
+    margin:0 0 16px;
+  }
+  .filler h2{
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight:400;
+    font-size:44px;
+    margin:0 0 20px;
+    line-height:1.15;
+  }
+  .filler p{
+    font-size:16px;
+    line-height:1.7;
+    color:var(--muted);
+    margin:0 0 16px;
+    max-width:620px;
   }
 
   @media (max-width:700px){
@@ -196,6 +235,8 @@
     header.nav{padding:16px 20px;}
     section.hero{padding:36px 20px;}
     nav.links{display:none;}
+    .filler{padding:40px 20px;}
+    .filler h2{font-size:30px;}
   }
 </style>
 </head>
@@ -215,6 +256,15 @@
     <span>🔍</span>
   </div>
 </header>
+
+<section class="filler top">
+  <div class="filler-inner">
+    <p class="filler-eyebrow">Who we work with</p>
+    <h2>Built on partnerships that scale with you</h2>
+    <p>We bring together deep technical expertise and a partner ecosystem spanning cloud, security, data, and enterprise platforms — so the solutions we deliver are grounded in proven, enterprise-ready technology.</p>
+    <p>Scroll down to see the trusted platforms and partners we work with every day.</p>
+  </div>
+</section>
 
 <section class="hero">
   <h1 class="headline">Logo Wall Headline</h1>
@@ -247,6 +297,15 @@
 
   <div class="cta-wrap">
     <button class="cta-btn">Logo wall CTA</button>
+  </div>
+</section>
+
+<section class="filler bottom">
+  <div class="filler-inner">
+    <p class="filler-eyebrow">Next steps</p>
+    <h2>Ready to see what we can build together</h2>
+    <p>From strategy through implementation, our teams partner with yours to turn these platforms into measurable outcomes — faster deployments, stronger security postures, and data you can actually act on.</p>
+    <p>Scroll back up to revisit the partner logos, or reach out to start the conversation.</p>
   </div>
 </section>
 
