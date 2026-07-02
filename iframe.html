@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe Sample</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .section {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        input, button {
+            margin: 5px;
+            padding: 8px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 180px;
+            border: 1px solid #666;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Main Page</h2>
+
+<div class="section">
+    <input
+        id="username"
+        name="username"
+        data-id="username"
+        type="text"
+        placeholder="Enter username">
+
+    <button
+        id="submitBtn"
+        name="submitBtn"
+        data-id="submitBtn">
+        Submit
+    </button>
+</div>
+
+<h2>Iframe</h2>
+
+<iframe srcdoc='
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+    font-family:Arial,sans-serif;
+    padding:15px;
+}
+input,button{
+    margin:5px;
+    padding:8px;
+}
+</style>
+</head>
+<body>
+
+<input
+    id="username"
+    name="username"
+    data-id="username"
+    type="text"
+    placeholder="Enter username">
+
+<button
+    id="submitBtn"
+    name="submitBtn"
+    data-id="submitBtn">
+    Submit
+</button>
+
+</body>
+</html>
+'></iframe>
+
+</body>
+</html>
