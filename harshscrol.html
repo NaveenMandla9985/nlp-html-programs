@@ -29,35 +29,60 @@
     color: #333;
   }
 
-  /* This is the container that scrolls internally */
-  .scroll-container {
-    width: 700px;
+  /* Outer card holds the scrollable body + the fixed footer */
+  .card {
+    width: 900px;
     max-width: 100%;
-    height: 500px;      /* fixed height -> content beyond this scrolls */
-    overflow-y: auto;   /* enables the internal scrollbar */
+    height: 560px;      /* fixed height -> content beyond this scrolls */
+    display: flex;
+    flex-direction: column;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+
+  .card-header {
+    background: #c9184a;
+    color: #fff;
+    padding: 14px 20px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    flex: 0 0 auto;
+  }
+
+  /* This is the container that scrolls internally */
+  .scroll-container {
+    flex: 1 1 auto;
+    overflow-y: auto;   /* enables the internal scrollbar */
     padding: 20px;
   }
 
-  .field-group {
+  .row-3 {
     display: grid;
-    grid-template-columns: 160px 1fr;
-    align-items: center;
-    gap: 10px 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 20px;
     margin-bottom: 18px;
   }
 
-  .field-group label {
-    font-size: 13px;
-    color: #444;
-    text-align: right;
+  .row-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 20px;
+    margin-bottom: 18px;
   }
 
-  .field-group input,
-  .field-group select {
+  .field label {
+    display: block;
+    font-size: 12px;
+    color: #444;
+    margin-bottom: 4px;
+  }
+
+  .field input,
+  .field select {
+    width: 100%;
     height: 32px;
     padding: 4px 8px;
     border: 1px solid #ccc;
@@ -65,7 +90,8 @@
     font-size: 13px;
   }
 
-  .field-group input:focus {
+  .field input:focus,
+  .field select:focus {
     outline: none;
     border-color: #c9184a;
     box-shadow: 0 0 0 2px rgba(201, 24, 74, 0.15);
@@ -73,7 +99,70 @@
 
   .highlight {
     border-color: #c9184a !important;
-    background: #fffbe6;
+    background: #fffbe6 !important;
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+  }
+
+  .checkbox-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 20px;
+    margin-bottom: 12px;
+  }
+
+  .checkbox-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #444;
+  }
+
+  .checkbox-field input {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Fixed footer, stays visible while body scrolls */
+  .card-footer {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 10px;
+    padding: 14px 20px;
+    background: #f7f7f7;
+    border-top: 1px solid #ddd;
+    flex-wrap: wrap;
+  }
+
+  .card-footer button {
+    flex: 1 1 auto;
+    min-width: 110px;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 3px;
+    background: #5b6b79;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+  }
+
+  .card-footer button:hover {
+    background: #4a5763;
+  }
+
+  .card-footer button.primary {
+    background: #c9184a;
+  }
+
+  .card-footer button.primary:hover {
+    background: #a8123c;
   }
 </style>
 </head>
@@ -82,118 +171,135 @@
   <div class="page">
     <h1>Claim Form (Scrollable Container Demo)</h1>
 
-    <div class="scroll-container">
+    <div class="card">
+      <div class="card-header">MINOR CLAIM</div>
 
-      <div class="field-group">
-        <label>Diagnosis 2</label>
-        <select><option>Select</option></select>
+      <div class="scroll-container">
+
+        <div class="row-2">
+          <div class="field">
+            <label>Diagnosis 2</label>
+            <select><option>Select</option></select>
+          </div>
+          <div class="field">
+            <label>Others</label>
+            <input type="text">
+          </div>
+        </div>
+
+        <div class="row-3">
+          <div class="field">
+            <label>Provider Code</label>
+            <input type="text" value="0000000001">
+          </div>
+          <div class="field">
+            <label>Provider Type</label>
+            <input type="text">
+          </div>
+          <div class="field">
+            <label>Provider Contact Type</label>
+            <input type="text">
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label>Provider Name</label>
+            <select><option>81 FAMILY CLINIC [PHPC Clinic]</option></select>
+          </div>
+          <div class="field">
+            <label>Specialty</label>
+            <input type="text">
+          </div>
+        </div>
+
+        <div class="field" style="margin-bottom: 18px;">
+          <label>Name of Doctor</label>
+          <input type="text">
+        </div>
+
+        <hr class="divider">
+
+        <div class="row-3">
+          <div class="field">
+            <label>Batch ID</label>
+            <input type="text" class="highlight" value="77406">
+          </div>
+          <div class="field">
+            <label>Invoice No</label>
+            <input type="text">
+          </div>
+          <div class="field">
+            <label>LOG Serial No</label>
+            <input type="text">
+          </div>
+        </div>
+
+        <div class="row-3">
+          <div class="field">
+            <label>Hospital Case No</label>
+            <input type="text">
+          </div>
+          <div class="field">
+            <label>Hospital Account No</label>
+            <input type="text">
+          </div>
+          <div class="field">
+            <label>Claim Sequence No</label>
+            <input type="text">
+          </div>
+        </div>
+
+        <div class="row-3">
+          <div class="field">
+            <label>TPA Upload Batch ID</label>
+            <input type="text">
+          </div>
+          <div class="field">
+            <label>TPA Claim Ref No</label>
+            <input type="text">
+          </div>
+          <div class="field">
+            <label>TPA Illness Type</label>
+            <input type="text">
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label>Remarks</label>
+            <input type="text">
+          </div>
+          <div class="field">
+            <label>Reference No</label>
+            <input type="text">
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="checkbox-row">
+          <div class="checkbox-field"><span>Ex-Gratia</span><input type="checkbox"></div>
+          <div class="checkbox-field"><span>Appeal Claim</span><input type="checkbox"></div>
+          <div class="checkbox-field"><span>OP Claim Defer</span><input type="checkbox"></div>
+        </div>
+        <div class="checkbox-row">
+          <div class="checkbox-field"><span>Shortfall</span><input type="checkbox"></div>
+          <div class="checkbox-field"><span>Shortfall Settlement</span><input type="checkbox" checked></div>
+          <div class="checkbox-field"><span>Fraud Suspect</span><input type="checkbox"></div>
+        </div>
+
       </div>
 
-      <div class="field-group">
-        <label>Others</label>
-        <input type="text">
+      <div class="card-footer">
+        <button>SAVE CLAIM</button>
+        <button>DELETE CLAIM</button>
+        <button>EXIT</button>
+        <button class="primary">APPROVE</button>
+        <button>CREATE CHILD CASE</button>
+        <button>PEND TASK</button>
+        <button>CLOSE TASK</button>
       </div>
-
-      <div class="field-group">
-        <label>Provider Code</label>
-        <input type="text" value="0000000001">
-      </div>
-
-      <div class="field-group">
-        <label>Provider Type</label>
-        <input type="text">
-      </div>
-
-      <div class="field-group">
-        <label>Provider Name</label>
-        <select><option>81 FAMILY CLINIC [PHPC Clinic]</option></select>
-      </div>
-
-      <div class="field-group">
-        <label>Specialty</label>
-        <input type="text">
-      </div>
-
-      <div class="field-group">
-        <label>Name of Doctor</label>
-        <input type="text">
-      </div>
-
-      <div class="field-group">
-        <label>Batch ID</label>
-        <input type="text" class="highlight" value="77406">
-      </div>
-
-      <div class="field-group">
-        <label>Invoice No</label>
-        <input type="text">
-      </div>
-
-      <div class="field-group">
-        <label>LOG Serial No</label>
-        <input type="text">
-      </div>
-
-      <div class="field-group">
-        <label>Hospital Case No</label>
-        <input type="text">
-      </div>
-
-      <div class="field-group">
-        <label>Hospital Account No</label>
-        <input type="text">
-      </div>
-
-      <div class="field-group">
-        <label>TPA Upload Batch ID</label>
-        <input type="text">
-      </div>
-
-      <div class="field-group">
-        <label>TPA Claim Ref No</label>
-        <input type="text">
-      </div>
-
-      <div class="field-group">
-        <label>TPA Illness Type</label>
-        <input type="text">
-      </div>
-
-      <div class="field-group">
-        <label>Ex-Gratia</label>
-        <input type="checkbox" style="justify-self: start; width: 18px; height: 18px;">
-      </div>
-
-      <div class="field-group">
-        <label>Appeal Claim</label>
-        <input type="checkbox" style="justify-self: start; width: 18px; height: 18px;">
-      </div>
-
-      <div class="field-group">
-        <label>Shortfall</label>
-        <input type="checkbox" style="justify-self: start; width: 18px; height: 18px;">
-      </div>
-
-      <div class="field-group">
-        <label>Shortfall Settlement</label>
-        <input type="checkbox" checked style="justify-self: start; width: 18px; height: 18px;">
-      </div>
-
-      <div class="field-group">
-        <label>Remarks</label>
-        <input type="text">
-      </div>
-
-      <div class="field-group">
-        <label>Extra Field 1</label>
-        <input type="text">
-      </div>
-
-      <div class="field-group">
-        <label>Extra Field 2</label>
-        <input type="text">
-      </div>
-
     </div>
   </div>
 
