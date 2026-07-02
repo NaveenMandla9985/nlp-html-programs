@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Testsigma Lazy Loading Demo</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+    margin:0;
+    background:#eef3f8;
+}
+
+.container{
+
+    width:900px;
+    margin:40px auto;
+
+    background:white;
+    padding:35px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+
+}
+
+h1{
+
+    color:#0d47a1;
+    margin-top:0;
+
+}
+
+#timer{
+
+    margin:25px 0;
+
+    padding:15px;
+
+    background:#1976d2;
+
+    color:white;
+
+    border-radius:8px;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+}
+
+#status{
+
+    margin-bottom:30px;
+
+    padding:15px;
+
+    background:#43a047;
+
+    color:white;
+
+    border-radius:8px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+.element{
+
+    display:none;
+
+    margin-bottom:30px;
+
+    padding:20px;
+
+    border-left:6px solid #2196f3;
+
+    background:#f8fbff;
+
+    border-radius:8px;
+
+}
+
+label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+    color:#333;
+
+}
+
+input,
+select,
+textarea{
+
+    width:350px;
+
+    padding:10px;
+
+    font-size:16px;
+
+}
+
+button{
+
+    background:#1976d2;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:6px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#125ea8;
+
+}
+
+iframe{
+
+    width:500px;
+
+    height:180px;
+
+    border:2px solid #2196f3;
+
+}
+
+.finished{
+
+    background:#2e7d32 !important;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Testsigma Lazy Loading Elements</h1>
+
+<div id="timer">
+Next element in <span id="count">40</span> seconds
+</div>
+
+<div id="status">
+Loading...
+</div>
+
+<div class="element" id="e1">
+<label>Username</label>
+<input id="username" placeholder="Username">
+</div>
+
+<div class="element" id="e2">
+<label>Password</label>
+<input type="password" id="password" placeholder="Password">
+</div>
+
+<div class="element" id="e3">
+<button id="loginBtn">Login</button>
+</div>
+
+<div class="element" id="e4">
+<label>Country</label>
+<select id="country">
+<option>India</option>
+<option>USA</option>
+<option>Canada</option>
+</select>
+</div>
+
+<div class="element" id="e5">
+<label>
+<input type="checkbox">
+Accept Terms
+</label>
+</div>
+
+<div class="element" id="e6">
+<label>Comments</label>
+<textarea rows="4"></textarea>
+</div>
+
+<div class="element" id="e7">
+<label>Upload File</label>
+<input type="file">
+</div>
+
+<div class="element" id="e8">
+<label>Date</label>
+<input type="date">
+</div>
+
+<div class="element" id="e9">
+
+<label>Iframe</label>
+
+<iframe srcdoc="
+<html>
+<body style='font-family:Arial;padding:20px'>
+<h3>Iframe Content</h3>
+<input placeholder='Frame Username'><br><br>
+<button>Submit</button>
+</body>
+</html>">
+</iframe>
+
+</div>
+
+<div class="element" id="e10">
+
+<button>Finish</button>
+
+</div>
+
+</div>
+
+<script>
+
+const elements=[
+"e1",
+"e2",
+"e3",
+"e4",
+"e5",
+"e6",
+"e7",
+"e8",
+"e9",
+"e10"
+];
+
+let current=0;
+
+let countdown=40;
+
+function loadElement(){
+
+    if(current<elements.length){
+
+        document.getElementById(elements[current]).style.display="block";
+
+        document.getElementById("status").innerHTML=
+        "✅ Loaded : "+elements[current];
+
+        current++;
+
+        countdown=40;
+
+    }
+    else{
+
+        document.getElementById("status").innerHTML=
+        "🎉 All Elements Loaded";
+
+        document.getElementById("status").classList.add("finished");
+
+        document.getElementById("timer").innerHTML="Completed";
+
+        clearInterval(timer);
+
+    }
+
+}
+
+loadElement();
+
+const timer=setInterval(function(){
+
+countdown--;
+
+document.getElementById("count").innerHTML=countdown;
+
+if(countdown===0){
+
+loadElement();
+
+}
+
+},1000);
+
+</script>
+
+</body>
+</html>
